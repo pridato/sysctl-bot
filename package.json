@@ -22,5 +22,10 @@
     "axios": "^1.18.1",
     "better-sqlite3": "^12.11.1",
     "dotenv": "^17.4.2"
+  },
+  "pnpm": {
+    "allowedBuilds": [
+      "better-sqlite3"
+    ]
   }
 }
