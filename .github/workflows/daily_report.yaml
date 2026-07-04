@@ -24,7 +24,7 @@ jobs:
           node-version: '26'
 
       - name: Install dependencies
-        run: pnpm install 
+        run: pnpm install --no-ignored-builds
 
       - name: Run pipeline script
         env:
