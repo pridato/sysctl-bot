@@ -1,0 +1,194 @@
+[1/3] getting historical metrics
+AxiosError: getaddrinfo EAI_AGAIN api.ouraring.com
+    at AxiosError.from (file:///home/pridato/openclaw-personal/node_modules/.pnpm/axios@1.18.1/node_modules/axios/lib/core/AxiosError.js:77:24)
+    at RedirectableRequest.handleRequestError (file:///home/pridato/openclaw-personal/node_modules/.pnpm/axios@1.18.1/node_modules/axios/lib/adapters/http.js:1259:27)
+    at RedirectableRequest.emit (node:events:509:20)
+    at eventHandlers.<computed> (/home/pridato/openclaw-personal/node_modules/.pnpm/follow-redirects@1.16.0/node_modules/follow-redirects/index.js:56:24)
+    at ClientRequest.emit (node:events:509:20)
+    at emitErrorEvent (node:_http_client:111:11)
+    at TLSSocket.socketErrorListener (node:_http_client:607:5)
+    at TLSSocket.emit (node:events:521:24)
+    at emitErrorNT (node:internal/streams/destroy:170:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+    at Axios.request (file:///home/pridato/openclaw-personal/node_modules/.pnpm/axios@1.18.1/node_modules/axios/lib/core/Axios.js:46:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Promise.all (index 0)
+    at async fetchOuraMetrics (file:///home/pridato/openclaw-personal/oura.js:13:38)
+    at async runPipeline (file:///home/pridato/openclaw-personal/prueba.js:15:21) {
+  isAxiosError: true,
+  code: 'EAI_AGAIN',
+  config: [Object: null prototype] {
+    transitional: {
+      silentJSONParsing: true,
+      forcedJSONParsing: true,
+      clarifyTimeoutError: false,
+      legacyInterceptorReqResOrdering: true,
+      advertiseZstdAcceptEncoding: false,
+      validateStatusUndefinedResolves: true
+    },
+    adapter: [ 'xhr', 'http', 'fetch' ],
+    transformRequest: [ [Function: transformRequest] ],
+    transformResponse: [ [Function: transformResponse] ],
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    maxBodyLength: -1,
+    env: { FormData: [Function], Blob: [class Blob] },
+    validateStatus: [Function: validateStatus],
+    headers: Object [AxiosHeaders] {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': undefined,
+      Authorization: 'Bearer N5GUO26XZ4GUIQ6H66R63A3Z472XX3RC',
+      'User-Agent': 'axios/1.18.1',
+      'Accept-Encoding': 'gzip, compress, deflate, br'
+    },
+    baseURL: 'https://api.ouraring.com/v2/usercollection',
+    params: { start_date: '2026-06-30', end_date: '2026-06-30' },
+    method: 'get',
+    url: '/daily_readiness',
+    allowAbsoluteUrls: true,
+    data: undefined
+  },
+  request: <ref *1> Writable {
+    _events: {
+      close: undefined,
+      error: [Function: handleRequestError],
+      prefinish: undefined,
+      finish: undefined,
+      drain: undefined,
+      response: [Function: handleResponse],
+      socket: [Array],
+      abort: undefined
+    },
+    _writableState: WritableState {
+      highWaterMark: 65536,
+      length: 0,
+      corked: 0,
+      onwrite: [Function (anonymous)],
+      writelen: 0,
+      bufferedIndex: 0,
+      pendingcb: 0,
+      Symbol(kState): 17581054,
+      Symbol(kBufferedValue): null,
+      Symbol(kErroredValue): [Error]
+    },
+    _maxListeners: undefined,
+    _options: {
+      maxRedirects: 21,
+      maxBodyLength: Infinity,
+      protocol: 'https:',
+      path: '/v2/usercollection/daily_readiness?start_date=2026-06-30&end_date=2026-06-30',
+      method: 'GET',
+      headers: [Object: null prototype],
+      agents: [Object],
+      auth: undefined,
+      family: undefined,
+      beforeRedirect: [Function: dispatchBeforeRedirect],
+      beforeRedirects: [Object: null prototype],
+      http2Options: undefined,
+      hostname: 'api.ouraring.com',
+      port: '',
+      agent: undefined,
+      sensitiveHeaders: [],
+      insecureHTTPParser: false,
+      nativeProtocols: [Object],
+      pathname: '/v2/usercollection/daily_readiness',
+      search: '?start_date=2026-06-30&end_date=2026-06-30'
+    },
+    _ended: true,
+    _ending: true,
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 0,
+    _requestBodyBuffers: [],
+    _eventsCount: 3,
+    _onNativeResponse: [Function (anonymous)],
+    _headerFilter: /^(?:Authorization|Proxy-Authorization|Cookie)$/i,
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      destroyed: true,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: true,
+      maxRequestsOnConnectionReached: false,
+      _defaultKeepAlive: true,
+      useChunkedEncodingByDefault: false,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      strictContentLength: false,
+      _contentLength: 0,
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      _closed: false,
+      _header: 'GET /v2/usercollection/daily_readiness?start_date=2026-06-30&end_date=2026-06-30 HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Authorization: Bearer N5GUO26XZ4GUIQ6H66R63A3Z472XX3RC\r\n' +
+        'User-Agent: axios/1.18.1\r\n' +
+        'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+        'Host: api.ouraring.com\r\n' +
+        'Connection: keep-alive\r\n' +
+        '\r\n',
+      _keepAliveTimeout: 0,
+      _onPendingData: [Function: nop],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'GET',
+      maxHeaderSize: undefined,
+      insecureHTTPParser: false,
+      httpValidation: undefined,
+      joinDuplicateHeaders: undefined,
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: [Function: emitRequestTimeout],
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      reusedSocket: false,
+      host: 'api.ouraring.com',
+      protocol: 'https:',
+      _redirectable: [Circular *1],
+      Symbol(shapeMode): false,
+      Symbol(kCapture): false,
+      Symbol(kBytesWritten): 0,
+      Symbol(kNeedDrain): false,
+      Symbol(corked): 0,
+      Symbol(kChunkedBuffer): [],
+      Symbol(kChunkedLength): 0,
+      Symbol(kSocket): [TLSSocket],
+      Symbol(kOutHeaders): [Object: null prototype],
+      Symbol(errored): null,
+      Symbol(kHighWaterMark): 65536,
+      Symbol(kRejectNonStandardBodyWrites): false,
+      Symbol(kPath): '/v2/usercollection/daily_readiness?start_date=2026-06-30&end_date=2026-06-30',
+      Symbol(kUniqueHeaders): null,
+      Symbol(kError): [Error]
+    },
+    _currentUrl: 'https://api.ouraring.com/v2/usercollection/daily_readiness?start_date=2026-06-30&end_date=2026-06-30',
+    _timeout: null,
+    Symbol(shapeMode): true,
+    Symbol(kCapture): false
+  },
+  [cause]: Error: getaddrinfo EAI_AGAIN api.ouraring.com
+      at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:121:26) {
+    errno: -3001,
+    code: 'EAI_AGAIN',
+    syscall: 'getaddrinfo',
+    hostname: 'api.ouraring.com'
+  }
+}
+undefined
+TypeError: Cannot destructure property 'date' of 'undefined' as it is undefined.
+    at saveOuraMetrics (file:///home/pridato/openclaw-personal/database.js:22:35)
+    at runPipeline (file:///home/pridato/openclaw-personal/prueba.js:17:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
