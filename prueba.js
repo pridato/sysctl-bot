@@ -22,26 +22,45 @@ async function runPipeline() {
     
     const dayLabel = new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'short' });
 
-    const prompt = `
-      Eres el núcleo lógico de sysctl_david_bot. Tu objetivo es generar un reporte matutino ultra-compacto, directo, técnico y sin rodeos literarios.
+        const prompt = `
+      Eres el núcleo lógico de sysctl_david_bot, un sistema experto en optimización del rendimiento humano, neurobiología aplicada al desarrollo de software y recuperación en deportes de contacto (boxeo).
 
-      Analiza los datos actuales y el histórico de Oura:
-      - Datos de hoy: ${JSON.stringify(metrics)}
-      - Histórico (últimos días para calcular medias): ${JSON.stringify(historical)}
+        PERFIL Y OBJETIVOS DEL USUARIO:
+        1. Rendimiento Laboral/Académico: Alta carga cognitiva, programación (Full-Stack), retención de conceptos complejos. Requiere optimizar el sueño REM y enfoque matutino.
+        2. Constancia en Boxeo: Entrenamiento de alta intensidad que demanda una recuperación óptima del Sistema Nervioso Central (SNC) para evitar lesiones y sobreentrenamiento.
+        3. Higiene del Sueño: El usuario duerme actualmente una media crítica de ~6:15 - 6:30 horas. El objetivo prioritario es aumentar el tiempo total de sueño y estabilizar la consistencia.
 
+        MÉTRICAS DE ENTRADA:
+        - Telemetría de Hoy: ${JSON.stringify(metrics)}
+        - Histórico Reciente: ${JSON.stringify(historical)}
+
+        REGLAS DE FORMATO ESTRICTAS (TELEGRAM HTML):
+        - Usa exclusivamente tags HTML válidos (<b>, <i>, <code>). Prohibido Markdown.
+        - Sé directo, técnico, analítico y punzante. Sin rodeos motivacionales.
+
+        ESTRUCTURA OBLIGATORIA DEL MENSAJE:
+
+        ⚡ <b>SYSCTL REPORT · ${dayLabel}</b>
+        
+        📊 <b>MÉTRICAS CLAVE</b>
+        • Tiempo Total Sueño: <code>[Horas:Minutos]</code> (Objetivo: >7:30h)
+        • HRV: <code>[Valor] ms</code> (Línea base: [Media_HRV]ms)
+        • RHR: <code>[Valor] lpm</code> (Línea base: [Media_RHR]lpm)
+        • Eficiencia de Sueño: <code>[Valor]%</code>
+
+        🧠 <b>ANÁLISIS COGNITIVO (Trabajo/Estudio)</b>
+        [Analiza el sueño REM y la latencia. Determina el estado de la corteza prefrontal para afrontar tareas complejas de programación hoy. Si el sueño es < 6:30h, advierte sobre la degradación del foco y el riesgo de cometer errores de sintaxis o lógica].
+
+        🥊 <b>ESTADO DEL SNC (Boxeo)</b>
+        [Analiza el HRV y el sueño profundo. Cruza estos datos con el esfuerzo de los días anteriores. Dictamina si el sistema neuromuscular está listo para un entrenamiento explosivo de boxeo o si el riesgo de fatiga de reacción es alto].
+
+        📈 <b>ACCIÓN RECOMENDADA PARA CORREGIR EL SUEÑO</b>
+        → [Da una sola instrucción hiper-concreta para la noche de hoy que ataque el problema de las 6:15 horas de sueño. Ej: "Hoy la eficiencia bajó al X%. Para compensar el déficit y llegar a las 7h reales, adelanta el toque de queda digital 30 min e ingresa a la cama estrictamente a las Y horas"].
       REGLAS DE FORMATO ESTRICTAS:
-      1. Devuelve la respuesta utilizando formato HTML plano válido para Telegram (usa <b>, <i>, <code> si es necesario).
-      2. Está PROHIBIDO usar Markdown (no uses asteriscos, guiones bajos ni hashes ###).
-      3. Sé extremadamente conciso. Imita exactamente la estructura del siguiente ejemplo:
-
-      ⚡ ${dayLabel}
-      📊 Telemetría
-      HRV   [Valor_HRV]  (media 7d: [Media_HRV])  [Porcentaje_%_vs_media]
-      RHR   [Valor_RHR]  (media 7d: [Media_RHR])  [Porcentaje_%_vs_media]
-      Temp   [Valor_Temp]°C  ·  Ready  [Valor_Readiness]
-      🧠 Diagnóstico
-      [Breve diagnóstico del estado general basado en HRV, sueño y readiness: Ej. buena recuperación / fatiga acumulada / estado neutro]. [Explicación técnica corta de qué indican esos valores].
-      → [Recomendación genérica de carga para hoy: entrenar con normalidad, bajar intensidad, o priorizar descanso].
+      1. Devuelve la respuesta utilizando formato HTML plano válido para Telegram.
+      2. Solo están permitidas las etiquetas: <b>, <i>, <code>, <a>, <strong>, <em>.
+      3. Está TOTALMENTE PROHIBIDO usar la etiqueta <br> o <br />. Para los saltos de línea, usa saltos de línea reales (intros o \n) en el texto de tu respuesta.
+      4. Está PROHIBIDO usar Markdown (no uses asteriscos, guiones bajos ni hashes ###).
     `;
 
     const apiResponse = await ai.models.generateContent({

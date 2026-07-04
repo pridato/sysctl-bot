@@ -28,7 +28,6 @@ export async function fetchOuraMetrics(token, date) {
       tempDev: readinessData.contributors.temperature_deviation ?? 0.0,
       activityScore: readinessData.contributors.activity_balance ?? 70
     };
-    
   } catch (error) {
     console.error(error);
   }
