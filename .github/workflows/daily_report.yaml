@@ -3,7 +3,7 @@ name: Daily Oura Telegram Report
 on:
   schedule:
     # runs every day at 05 UTC (7 00 AM)
-    - cron: '0 5 * * *'
+    - cron: '30 5 * * *'
   workflow_dispatch: 
 
 jobs:
@@ -32,4 +32,4 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           OURA_PERSONAL_TOKEN: ${{ secrets.OURA_PERSONAL_TOKEN }}
-        run: node prueba.js
+        run: node prueba.jS

@@ -13,7 +13,6 @@ async function runPipeline() {
 
     console.log('[1/3] getting historical metrics');
     const metrics = await fetchOuraMetrics(OURA_PERSONAL_TOKEN, today);
-    console.log(metrics);
     saveOuraMetrics(metrics);
     const historical = getHistoricalMetrics(7);
 
@@ -21,6 +20,12 @@ async function runPipeline() {
     const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
     
     const dayLabel = new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'short' });
+    const promptMetrics = {
+      ...metrics,
+      activityData: Array.isArray(metrics.activityData) ? metrics.activityData.slice(0, 5) : metrics.activityData,
+      stressData: Array.isArray(metrics.stressData) ? metrics.stressData.slice(0, 5) : metrics.stressData,
+      workoutData: Array.isArray(metrics.workoutData) ? metrics.workoutData.slice(0, 5) : metrics.workoutData
+    };
 
         const prompt = `
       Eres el núcleo lógico de sysctl_david_bot, un sistema experto en optimización del rendimiento humano, neurobiología aplicada al desarrollo de software y recuperación en deportes de contacto (boxeo).
@@ -31,7 +36,7 @@ async function runPipeline() {
         3. Higiene del Sueño: El usuario duerme actualmente una media crítica de ~6:15 - 6:30 horas. El objetivo prioritario es aumentar el tiempo total de sueño y estabilizar la consistencia.
 
         MÉTRICAS DE ENTRADA:
-        - Telemetría de Hoy: ${JSON.stringify(metrics)}
+        - Telemetría de Hoy: ${JSON.stringify(promptMetrics)}
         - Histórico Reciente: ${JSON.stringify(historical)}
 
         REGLAS DE FORMATO ESTRICTAS (TELEGRAM HTML):
@@ -49,13 +54,13 @@ async function runPipeline() {
         • Eficiencia de Sueño: <code>[Valor]%</code>
 
         🧠 <b>ANÁLISIS COGNITIVO (Trabajo/Estudio)</b>
-        [Analiza el sueño REM y la latencia. Determina el estado de la corteza prefrontal para afrontar tareas complejas de programación hoy. Si el sueño es < 6:30h, advierte sobre la degradación del foco y el riesgo de cometer errores de sintaxis o lógica].
+        [Analiza el sueño REM, la latencia, la eficiencia, el estrés diario y la recuperación nocturna. Determina el estado de la corteza prefrontal para afrontar tareas complejas de programación hoy. Si el sueño es < 6:30h o el estrés está alto, advierte sobre la degradación del foco y el riesgo de cometer errores de sintaxis o lógica].
 
         🥊 <b>ESTADO DEL SNC (Boxeo)</b>
-        [Analiza el HRV y el sueño profundo. Cruza estos datos con el esfuerzo de los días anteriores. Dictamina si el sistema neuromuscular está listo para un entrenamiento explosivo de boxeo o si el riesgo de fatiga de reacción es alto].
+        [Analiza HRV, sueño profundo, carga de actividad, estrés diario y workouts recientes. Cruza estos datos con el esfuerzo de los días anteriores. Dictamina si el sistema neuromuscular está listo para un entrenamiento explosivo de boxeo o si el riesgo de fatiga de reacción es alto].
 
         📈 <b>ACCIÓN RECOMENDADA PARA CORREGIR EL SUEÑO</b>
-        → [Da una sola instrucción hiper-concreta para la noche de hoy que ataque el problema de las 6:15 horas de sueño. Ej: "Hoy la eficiencia bajó al X%. Para compensar el déficit y llegar a las 7h reales, adelanta el toque de queda digital 30 min e ingresa a la cama estrictamente a las Y horas"].
+        → [Da una sola instrucción hiper-concreta para la noche de hoy que ataque el problema de las 6:15 horas de sueño. Si hay workouts o estrés altos, prioriza recuperación sobre intensidad. Ej: "Hoy la eficiencia bajó al X%. Para compensar el déficit y llegar a las 7h reales, adelanta el toque de queda digital 30 min e ingresa a la cama estrictamente a las Y horas"].
       REGLAS DE FORMATO ESTRICTAS:
       1. Devuelve la respuesta utilizando formato HTML plano válido para Telegram.
       2. Solo están permitidas las etiquetas: <b>, <i>, <code>, <a>, <strong>, <em>.
