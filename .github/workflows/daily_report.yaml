@@ -32,4 +32,4 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           OURA_PERSONAL_TOKEN: ${{ secrets.OURA_PERSONAL_TOKEN }}
-        run: node prueba.jS
+        run: node prueba.js
